@@ -11,7 +11,7 @@ import java.util.function.Function;
  *          It is designed for scenarios where multiple threads need to access and modify
  *          a shared bitset concurrently.
  */
-public class NonBlockingConcurrentBitset {
+public class NonBlockingConcurrentBitset implements ConcurrentBitSet{
 
     /**
      * The size of a word in bits.
@@ -36,14 +36,15 @@ public class NonBlockingConcurrentBitset {
      * Gets the value of the bit at the specified index.
      *
      * @param bitIndex The index of the bit to retrieve.
-     * @return The value of the bit (0 or 1) at the specified index.
+     * @return The value of the bit (true or false) at the specified index.
      */
-    public int get(int bitIndex) {
+    @Override
+    public boolean get(int bitIndex) {
         int wordIndex = bitIndex / WORD_SIZE;
         int bitOffset = bitIndex % WORD_SIZE;
         int bitMask = 1 << bitOffset;
 
-        return (this.data.getWordVolatile(wordIndex) & bitMask) >> bitOffset;
+        return (this.data.getWordVolatile(wordIndex) & bitMask) >> bitOffset != 0;
     }
 
     /**
@@ -51,6 +52,7 @@ public class NonBlockingConcurrentBitset {
      *
      * @param bitIndex The index of the bit to set.
      */
+    @Override
     public void set(int bitIndex) {
         int wordIndex = bitIndex / WORD_SIZE;
         int bitOffset = bitIndex % WORD_SIZE;
@@ -63,6 +65,7 @@ public class NonBlockingConcurrentBitset {
      *
      * @param bitIndex The index of the bit to clear.
      */
+    @Override
     public void clear(int bitIndex) {
         int wordIndex = bitIndex / WORD_SIZE;
         int bitOffset = bitIndex % WORD_SIZE;
@@ -75,6 +78,7 @@ public class NonBlockingConcurrentBitset {
      *
      * @param bitIndex The index of the bit to flip.
      */
+    @Override
     public void flip(int bitIndex) {
         int wordIndex = bitIndex / WORD_SIZE;
         int bitOffset = bitIndex % WORD_SIZE;
