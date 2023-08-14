@@ -6,9 +6,9 @@ package io.github.ololx.samples.concurrent.bitset;
  *
  * @author Alexander A. Kropotin
  */
-public class ConcurrentBitSetOnSynchronization extends AbstractBitSetConcurrentAdapter {
+public class ConcurrentBitSetOnFullSynchronization extends AbstractBitSetConcurrentAdapter {
 
-    public ConcurrentBitSetOnSynchronization(int size) {
+    public ConcurrentBitSetOnFullSynchronization(int size) {
         super(size);
     }
 

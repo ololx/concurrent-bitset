@@ -112,12 +112,13 @@ public class NonBlockingConcurrentBitset implements ConcurrentBitSet{
          * @implSpec This method uses a loop with compareAndSet to ensure atomicity of the operation.
          */
         private void setWordVolatile(int wordIndex, Function<Byte, Byte> binaryOperation) {
+            byte currentWordValue;
             byte newWordValue;
 
             do {
-                byte currentWordValue = this.words[wordIndex];
+                currentWordValue = this.getWordVolatile(wordIndex);
                 newWordValue = binaryOperation.apply(currentWordValue);
-            } while (!WORDS_VAR_HANDLER.compareAndSet(this.words, wordIndex, this.words[wordIndex], newWordValue));
+            } while (!WORDS_VAR_HANDLER.compareAndSet(this.words, wordIndex, currentWordValue, newWordValue));
         }
 
         /**
