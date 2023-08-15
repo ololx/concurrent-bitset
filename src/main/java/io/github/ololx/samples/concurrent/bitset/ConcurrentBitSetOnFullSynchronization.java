@@ -1,6 +1,20 @@
 package io.github.ololx.samples.concurrent.bitset;
 
+import java.util.BitSet;
+
 /**
+ * Provides a concurrent implementation of a bit set using full synchronization.
+ * This class extends {@link AbstractBitSetConcurrentAdapter}.
+ *
+ * @apiNote This class is suitable for scenarios where thread safety is required, but the performance
+ * impact of full synchronization may be a concern.
+ * @implNote This implementation ensures that all operations on the bit set are synchronized
+ * using a monitor lock on the underlying {@link BitSet} instance, providing thread safety.
+ * @implSpec All methods are synchronized using the underlying {@link BitSet} instance.
+ * While providing thread safety, this approach may result in lower concurrency compared
+ * to other implementations that use more fine-grained locking mechanisms.
+ * @see AbstractBitSetConcurrentAdapter
+ * <p>
  * project concurrent-bitset
  * created 14.08.2023 14:52
  *
@@ -8,10 +22,20 @@ package io.github.ololx.samples.concurrent.bitset;
  */
 public class ConcurrentBitSetOnFullSynchronization extends AbstractBitSetConcurrentAdapter {
 
+    /**
+     * Constructs a concurrent bit set with the specified size.
+     *
+     * @param size The size of the bit set.
+     */
     public ConcurrentBitSetOnFullSynchronization(int size) {
         super(size);
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @implSpec This method is synchronized using a monitor lock on the underlying {@link BitSet}.
+     */
     @Override
     public boolean get(int bitIndex) {
         synchronized (this.bitSet) {
@@ -19,6 +43,11 @@ public class ConcurrentBitSetOnFullSynchronization extends AbstractBitSetConcurr
         }
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @implSpec This method is synchronized using a monitor lock on the underlying {@link BitSet}.
+     */
     @Override
     public void set(int bitIndex) {
         synchronized (this.bitSet) {
@@ -26,6 +55,11 @@ public class ConcurrentBitSetOnFullSynchronization extends AbstractBitSetConcurr
         }
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @implSpec This method is synchronized using a monitor lock on the underlying {@link BitSet}.
+     */
     @Override
     public void clear(int bitIndex) {
         synchronized (this.bitSet) {
@@ -33,6 +67,11 @@ public class ConcurrentBitSetOnFullSynchronization extends AbstractBitSetConcurr
         }
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @implSpec This method is synchronized using a monitor lock on the underlying {@link BitSet}.
+     */
     @Override
     public void flip(int bitIndex) {
         synchronized (this.bitSet) {

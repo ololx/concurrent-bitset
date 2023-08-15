@@ -6,7 +6,7 @@ package io.github.ololx.samples.concurrent.bitset;
  *
  * @apiNote Implementations of this interface are expected to provide thread-safe
  * behavior for all methods.
- *
+ * <p>
  * project concurrent-bitset
  * created 14.08.2023 13:51
  *

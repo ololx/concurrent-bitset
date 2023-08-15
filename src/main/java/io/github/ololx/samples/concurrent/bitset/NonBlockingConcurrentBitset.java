@@ -8,10 +8,15 @@ import java.util.function.Function;
  * A thread-safe implementation of a concurrent bitset using atomic operations.
  *
  * @apiNote This class provides methods to manipulate individual bits in a thread-safe manner.
- *          It is designed for scenarios where multiple threads need to access and modify
- *          a shared bitset concurrently.
+ * It is designed for scenarios where multiple threads need to access and modify
+ * a shared bitset concurrently.
+ *
+ * project concurrent-bitset
+ * created 01.08.2023 10:52
+ *
+ * @author Alexander A. Kropotin
  */
-public class NonBlockingConcurrentBitset implements ConcurrentBitSet{
+public class NonBlockingConcurrentBitset implements ConcurrentBitSet {
 
     /**
      * The size of a word in bits.
