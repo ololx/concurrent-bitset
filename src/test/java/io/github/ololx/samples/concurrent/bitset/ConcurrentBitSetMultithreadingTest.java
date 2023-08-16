@@ -76,6 +76,6 @@ public class ConcurrentBitSetMultithreadingTest extends MultithreadedTest {
 
     @Test
     public void testCounter() throws Throwable {
-        TestFramework.runManyTimes(new ConcurrentBitSetMultithreadingTest(), 100);
+        TestFramework.runManyTimes(new ConcurrentBitSetMultithreadingTest(), 1000);
     }
 }

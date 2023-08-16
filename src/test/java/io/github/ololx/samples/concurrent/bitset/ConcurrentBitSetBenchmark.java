@@ -4,45 +4,50 @@ import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
 import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.RunnerException;
-import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.IntStream;
-
-import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
 @State(Scope.Thread)
 @Warmup(
         iterations = 5,
-        time = 1,
-        timeUnit = TimeUnit.SECONDS
+        time = 100,
+        timeUnit = TimeUnit.MILLISECONDS
 )
 @Measurement(
         iterations = 5,
-        time = 1,
-        timeUnit = TimeUnit.SECONDS
+        time = 100,
+        timeUnit = TimeUnit.MILLISECONDS
 )
 @Fork(3)
 @BenchmarkMode(Mode.AverageTime)
-@OutputTimeUnit(MILLISECONDS)
+@OutputTimeUnit(TimeUnit.MICROSECONDS)
 public class ConcurrentBitSetBenchmark {
+
+    private static final int AVAILABLE_CPU = Runtime.getRuntime().availableProcessors();
 
     private ConcurrentBitSet concurrentBitSet;
 
-    @Param({"javaNative", "customOnUnsafe", "castomOnSegmentaryReadWriteLocks", "castomOnOneReadWriteLocks"})
-    private String type;
+    @Param({"javaNative", "castomOnOneReadWriteLocks", "castomOnSegmentsReadWriteLocks", "customOnUnsafe"})
+    private String typeOfBitSetRealization;
 
-    private final static int BITS = 100_000;
+    private ExecutorService executor;
 
-    private final static int BITSET_CAPACITY = BITS + 1;
+    @Param({"10", "100", "1000"})
+    private int sizeOfBitSet;
+
+    @Param({"10", "100"})
+    private int countOfSetters;
+
+    @Param({"10", "100"})
+    private int countOfGetters;
 
     public static void main(String[] args) throws RunnerException {
-        Options options = new OptionsBuilder()
+        var options = new OptionsBuilder()
                 .include(ConcurrentBitSetBenchmark.class.getSimpleName())
                 .build();
         new Runner(options).run();
@@ -50,99 +55,45 @@ public class ConcurrentBitSetBenchmark {
 
     @Setup
     public void setup() {
-        switch (type) {
-            case "javaNative" -> concurrentBitSet = new ConcurrentBitSetOnFullSynchronization(BITSET_CAPACITY);
-            case "customOnUnsafe" -> concurrentBitSet = new NonBlockingConcurrentBitset(BITSET_CAPACITY);
-            case "castomOnSegmentaryReadWriteLocks" -> concurrentBitSet = new ConcurrentBitSetOnSegmentsLocks(
-                    BITSET_CAPACITY);
-            case "castomOnOneReadWriteLocks" -> concurrentBitSet = new ConcurrentBitSetOnGeneralLock(BITSET_CAPACITY);
+        switch (typeOfBitSetRealization) {
+            case "javaNative" -> concurrentBitSet = new ConcurrentBitSetOnFullSynchronization(sizeOfBitSet);
+            case "customOnUnsafe" -> concurrentBitSet = new NonBlockingConcurrentBitset(sizeOfBitSet);
+            case "castomOnSegmentsReadWriteLocks" -> concurrentBitSet = new ConcurrentBitSetOnSegmentsLocks(sizeOfBitSet);
+            case "castomOnOneReadWriteLocks" -> concurrentBitSet = new ConcurrentBitSetOnGeneralLock(sizeOfBitSet);
         }
+
+        executor = Executors.newWorkStealingPool(AVAILABLE_CPU);
+    }
+
+    @TearDown
+    public void tearDown() {
+        executor.shutdown();
     }
 
     @Benchmark
-    public void updateAndGetOncePerBit(Blackhole blackhole) {
-        List<CompletableFuture<?>> futures = new ArrayList<>();
+    public void get_set_benchmark(Blackhole blackhole) {
+        var tasksCount = sizeOfBitSet * (countOfGetters + countOfSetters);
+        var bitsetInvocations = new ArrayList<CompletableFuture<Void>>(tasksCount);
 
-        IntStream.range(0, BITS)
-                .boxed()
-                .forEach(j -> futures.add(CompletableFuture.runAsync(() -> concurrentBitSet.set(j))));
-        IntStream.range(0, BITS)
-                .boxed()
-                .forEach(j -> futures.add(CompletableFuture.runAsync(() -> concurrentBitSet.flip(j))));
-        IntStream.range(0, BITS)
-                .boxed()
-                .forEach(j -> futures.add(CompletableFuture.runAsync(() -> concurrentBitSet.clear(j))));
-        IntStream.range(0, BITS)
-                .boxed()
-                .forEach(j -> futures.add(CompletableFuture.runAsync(() -> blackhole.consume(concurrentBitSet.get(j)))));
+        for (int setBitOpNumber = 0; setBitOpNumber < countOfGetters; setBitOpNumber++) {
+            bitsetInvocations.add(CompletableFuture.runAsync(() -> {
+                for (int bitNumber = 0; bitNumber < sizeOfBitSet; bitNumber++) {
+                    concurrentBitSet.set(bitNumber);
+                }
 
-        CompletableFuture.allOf(futures.toArray(CompletableFuture[]::new)).join();
-    }
+            }, executor));
+        }
 
-    @Benchmark
-    public void updateOnceAndReadManyTimesPerBit(Blackhole blackhole) {
-        List<CompletableFuture<?>> futures = new ArrayList<>();
+        for (int getBitOpNumber = 0; getBitOpNumber < countOfSetters; getBitOpNumber++) {
+            bitsetInvocations.add(CompletableFuture.runAsync(() -> {
+                for (int bitNumber = 0; bitNumber < sizeOfBitSet; bitNumber++) {
+                    blackhole.consume(concurrentBitSet.get(bitNumber));
+                }
 
-        IntStream.range(0, BITS)
-                .boxed()
-                .forEach(j -> futures.add(CompletableFuture.runAsync(() -> concurrentBitSet.set(j))));
-        IntStream.range(0, BITS)
-                .boxed()
-                .forEach(j -> futures.add(CompletableFuture.runAsync(() -> concurrentBitSet.flip(j))));
-        IntStream.range(0, BITS)
-                .boxed()
-                .forEach(j -> futures.add(CompletableFuture.runAsync(() -> concurrentBitSet.clear(j))));
-        IntStream.range(0, BITS)
-                .boxed()
-                .forEach(j -> futures.add(CompletableFuture.runAsync(() -> {
-                    blackhole.consume(concurrentBitSet.get(j));
-                    blackhole.consume(concurrentBitSet.get(j));
-                    blackhole.consume(concurrentBitSet.get(j));
-                    blackhole.consume(concurrentBitSet.get(j));
-                    blackhole.consume(concurrentBitSet.get(j));
-                    blackhole.consume(concurrentBitSet.get(j));
-                })));
+            }, executor));
+        }
 
-        CompletableFuture.allOf(futures.toArray(CompletableFuture[]::new)).join();
-    }
-
-    @Benchmark
-    public void updateManyTimesAndReadOncePerBit(Blackhole blackhole) {
-        List<CompletableFuture<?>> futures = new ArrayList<>();
-
-        IntStream.range(0, BITS)
-                .boxed()
-                .forEach(j -> futures.add(CompletableFuture.runAsync(() -> {
-                    concurrentBitSet.set(j);
-                    concurrentBitSet.set(j);
-                    concurrentBitSet.set(j);
-                    concurrentBitSet.set(j);
-                    concurrentBitSet.set(j);
-                })));
-        IntStream.range(0, BITS)
-                .boxed()
-                .forEach(j -> futures.add(CompletableFuture.runAsync(() -> {
-                    concurrentBitSet.flip(j);
-                    concurrentBitSet.flip(j);
-                    concurrentBitSet.flip(j);
-                    concurrentBitSet.flip(j);
-                    concurrentBitSet.flip(j);
-                    concurrentBitSet.flip(j);
-                })));
-        IntStream.range(0, BITS)
-                .boxed()
-                .forEach(j -> futures.add(CompletableFuture.runAsync(() -> {
-                    concurrentBitSet.clear(j);
-                    concurrentBitSet.clear(j);
-                    concurrentBitSet.clear(j);
-                    concurrentBitSet.clear(j);
-                    concurrentBitSet.clear(j);
-                    concurrentBitSet.clear(j);
-                })));
-        IntStream.range(0, BITS)
-                .boxed()
-                .forEach(j -> futures.add(CompletableFuture.runAsync(() -> blackhole.consume(concurrentBitSet.get(j)))));
-
-        CompletableFuture.allOf(futures.toArray(CompletableFuture[]::new)).join();
+        CompletableFuture.allOf(bitsetInvocations.toArray(CompletableFuture[]::new))
+                .join();
     }
 }
