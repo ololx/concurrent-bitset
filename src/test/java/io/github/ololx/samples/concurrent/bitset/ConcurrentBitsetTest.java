@@ -35,17 +35,17 @@ public class ConcurrentBitsetTest {
                 .collect(Collectors.toList());
 
         data.add(new Object[]{
-                new ConcurrentBitSetWithSynchronizationByThis(bitSetSize),
+                new ConcurrentBitSetWithFULLSynchronization(bitSetSize),
                 unitIndexes,
                 bitSetSize
         });
         data.add(new Object[]{
-                new ConcurrentBitSetWithOneReadWriteLock(bitSetSize),
+                new ConcurrentBitSetWithGeneralRWLock(bitSetSize),
                 unitIndexes,
                 bitSetSize
         });
         data.add(new Object[]{
-                new ConcurrentBitSetWithManyReadWriteLocksBySegments(bitSetSize),
+                new ConcurrentBitSetWithSegmentsRWLocks(bitSetSize),
                 unitIndexes,
                 bitSetSize
         });

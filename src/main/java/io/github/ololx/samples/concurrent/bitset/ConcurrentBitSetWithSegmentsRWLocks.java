@@ -23,7 +23,7 @@ import java.util.stream.IntStream;
  *
  * @author Alexander A. Kropotin
  */
-public class ConcurrentBitSetWithManyReadWriteLocksBySegments extends AbstractBitSetConcurrentAdapter {
+public class ConcurrentBitSetWithSegmentsRWLocks extends AbstractBitSetConcurrentAdapter {
 
     /**
      * The number of bits required to address a specific position within a "word."
@@ -41,7 +41,7 @@ public class ConcurrentBitSetWithManyReadWriteLocksBySegments extends AbstractBi
      *
      * @param size The size of the bit set.
      */
-    public ConcurrentBitSetWithManyReadWriteLocksBySegments(int size) {
+    public ConcurrentBitSetWithSegmentsRWLocks(int size) {
         super(size);
         this.readWriteLocks = new ReadWriteLock[wordIndex(size - 1) + 1];
         IntStream.range(0, this.readWriteLocks.length)

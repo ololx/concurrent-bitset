@@ -8,18 +8,18 @@ public class ConcurrentBitSetMultithreadingTest extends MultithreadedTest {
 
     private NonBlockingConcurrentBitset nonBlockingConcurrentBitset;
 
-    private ConcurrentBitSetWithSynchronizationByThis concurrentBitSetOnFullSynchronization;
+    private ConcurrentBitSetWithFULLSynchronization concurrentBitSetOnFullSynchronization;
 
-    private ConcurrentBitSetWithOneReadWriteLock concurrentBitSetOnGeneralLock;
+    private ConcurrentBitSetWithGeneralRWLock concurrentBitSetOnGeneralLock;
 
-    private ConcurrentBitSetWithManyReadWriteLocksBySegments concurrentBitSetOnSegmentsLocks;
+    private ConcurrentBitSetWithSegmentsRWLocks concurrentBitSetOnSegmentsLocks;
 
     @Override
     public void initialize() {
         this.nonBlockingConcurrentBitset = new NonBlockingConcurrentBitset(10);
-        this.concurrentBitSetOnFullSynchronization = new ConcurrentBitSetWithSynchronizationByThis(10);
-        this.concurrentBitSetOnGeneralLock = new ConcurrentBitSetWithOneReadWriteLock(10);
-        this.concurrentBitSetOnSegmentsLocks = new ConcurrentBitSetWithManyReadWriteLocksBySegments(10);
+        this.concurrentBitSetOnFullSynchronization = new ConcurrentBitSetWithFULLSynchronization(10);
+        this.concurrentBitSetOnGeneralLock = new ConcurrentBitSetWithGeneralRWLock(10);
+        this.concurrentBitSetOnSegmentsLocks = new ConcurrentBitSetWithSegmentsRWLocks(10);
     }
 
     public void thread1() throws InterruptedException {

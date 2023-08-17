@@ -20,14 +20,14 @@ import java.util.BitSet;
  *
  * @author Alexander A. Kropotin
  */
-public class ConcurrentBitSetWithSynchronizationByThis extends AbstractBitSetConcurrentAdapter {
+public class ConcurrentBitSetWithFULLSynchronization extends AbstractBitSetConcurrentAdapter {
 
     /**
      * Constructs a concurrent bit set with the specified size.
      *
      * @param size The size of the bit set.
      */
-    public ConcurrentBitSetWithSynchronizationByThis(int size) {
+    public ConcurrentBitSetWithFULLSynchronization(int size) {
         super(size);
     }
 
