@@ -28,11 +28,19 @@ import java.util.concurrent.TimeUnit;
 @OutputTimeUnit(TimeUnit.MICROSECONDS)
 public class ConcurrentBitSetBenchmark {
 
-    private static final int AVAILABLE_CPU = Runtime.getRuntime().availableProcessors();
+    private static final int AVAILABLE_CPU = Runtime.getRuntime()
+            .availableProcessors();
 
     private ConcurrentBitSet concurrentBitSet;
 
-    @Param({"javaNative", "castomOnOneReadWriteLocks", "castomOnSegmentsReadWriteLocks", "customOnUnsafe"})
+    @Param(
+            {
+                    "javaNativeWithSynchronizationByThis",
+                    "javaNativeWithOneReadWriteLock",
+                    "javaNativeWithManyReadWriteLocksBySegments",
+                    "NonBlockingConcurrentBitset"
+            }
+    )
     private String typeOfBitSetRealization;
 
     private ExecutorService executor;
@@ -56,10 +64,13 @@ public class ConcurrentBitSetBenchmark {
     @Setup
     public void setup() {
         switch (typeOfBitSetRealization) {
-            case "javaNative" -> concurrentBitSet = new ConcurrentBitSetOnFullSynchronization(sizeOfBitSet);
-            case "customOnUnsafe" -> concurrentBitSet = new NonBlockingConcurrentBitset(sizeOfBitSet);
-            case "castomOnSegmentsReadWriteLocks" -> concurrentBitSet = new ConcurrentBitSetOnSegmentsLocks(sizeOfBitSet);
-            case "castomOnOneReadWriteLocks" -> concurrentBitSet = new ConcurrentBitSetOnGeneralLock(sizeOfBitSet);
+            case "javaNativeWithSynchronizationByThis" -> concurrentBitSet =
+                    new ConcurrentBitSetWithSynchronizationByThis(sizeOfBitSet);
+            case "javaNativeWithOneReadWriteLock" ->
+                    concurrentBitSet = new ConcurrentBitSetWithOneReadWriteLock(sizeOfBitSet);
+            case "javaNativeWithManyReadWriteLocksBySegments" ->
+                    concurrentBitSet = new ConcurrentBitSetWithManyReadWriteLocksBySegments(sizeOfBitSet);
+            case "NonBlockingConcurrentBitset" -> concurrentBitSet = new NonBlockingConcurrentBitset(sizeOfBitSet);
         }
 
         executor = Executors.newWorkStealingPool(AVAILABLE_CPU);

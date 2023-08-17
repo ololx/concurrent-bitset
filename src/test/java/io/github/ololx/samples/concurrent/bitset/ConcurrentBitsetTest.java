@@ -1,13 +1,11 @@
 package io.github.ololx.samples.concurrent.bitset;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Random;
@@ -37,17 +35,17 @@ public class ConcurrentBitsetTest {
                 .collect(Collectors.toList());
 
         data.add(new Object[]{
-                new ConcurrentBitSetOnFullSynchronization(bitSetSize),
+                new ConcurrentBitSetWithSynchronizationByThis(bitSetSize),
                 unitIndexes,
                 bitSetSize
         });
         data.add(new Object[]{
-                new ConcurrentBitSetOnGeneralLock(bitSetSize),
+                new ConcurrentBitSetWithOneReadWriteLock(bitSetSize),
                 unitIndexes,
                 bitSetSize
         });
         data.add(new Object[]{
-                new ConcurrentBitSetOnSegmentsLocks(bitSetSize),
+                new ConcurrentBitSetWithManyReadWriteLocksBySegments(bitSetSize),
                 unitIndexes,
                 bitSetSize
         });

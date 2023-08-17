@@ -21,7 +21,7 @@ import java.util.function.Supplier;
  *
  * @author Alexander A. Kropotin
  */
-public class ConcurrentBitSetOnGeneralLock extends AbstractBitSetConcurrentAdapter {
+public class ConcurrentBitSetWithOneReadWriteLock extends AbstractBitSetConcurrentAdapter {
 
     /**
      * General read-write lock for the whole bit set.
@@ -33,7 +33,7 @@ public class ConcurrentBitSetOnGeneralLock extends AbstractBitSetConcurrentAdapt
      *
      * @param size The size of the bit set.
      */
-    public ConcurrentBitSetOnGeneralLock(int size) {
+    public ConcurrentBitSetWithOneReadWriteLock(int size) {
         super(size);
         this.readWriteLock = new ReentrantReadWriteLock();
     }
