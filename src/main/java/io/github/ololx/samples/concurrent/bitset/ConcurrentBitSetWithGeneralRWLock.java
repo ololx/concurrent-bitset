@@ -7,21 +7,21 @@ import java.util.function.Supplier;
 
 /**
  * A concurrent bit set implementation using a general read-write lock.
- * This class extends {@link AbstractBitSetConcurrentAdapter}.
+ * This class extends {@link AbstractBitSetConcurrentWrapper}.
  *
  * @apiNote This class is suitable for scenarios where access to the entire bit set needs
  * to be synchronized using a single lock.
  * @implSpec All public methods in this class are thread-safe. The single read-write lock
  * ensures that only one thread can perform write operations at a time, while allowing multiple
  * threads to perform read operations concurrently.
- * @see AbstractBitSetConcurrentAdapter
+ * @see AbstractBitSetConcurrentWrapper
  * <p>
  * project concurrent-bitset
  * created 14.08.2023 14:52
  *
  * @author Alexander A. Kropotin
  */
-public class ConcurrentBitSetWithGeneralRWLock extends AbstractBitSetConcurrentAdapter {
+public class ConcurrentBitSetWithGeneralRWLock extends AbstractBitSetConcurrentWrapper {
 
     /**
      * General read-write lock for the whole bit set.

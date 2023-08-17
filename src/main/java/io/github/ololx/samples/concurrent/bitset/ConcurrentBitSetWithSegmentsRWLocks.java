@@ -8,7 +8,7 @@ import java.util.stream.IntStream;
 
 /**
  * A concurrent bit set implementation using separate segment locks.
- * This class extends {@link AbstractBitSetConcurrentAdapter}.
+ * This class extends {@link AbstractBitSetConcurrentWrapper}.
  *
  * @apiNote This class is suitable for scenarios where multiple threads may concurrently access
  * different segments of the bit set, ensuring better concurrency compared to full synchronization.
@@ -16,14 +16,14 @@ import java.util.stream.IntStream;
  * for each segment of the bit set.
  * @implSpec All public methods in this class are thread-safe. The segment locks ensure
  * that operations on different segments can be performed concurrently by different threads.
- * @see AbstractBitSetConcurrentAdapter
+ * @see AbstractBitSetConcurrentWrapper
  * <p>
  * project concurrent-bitset
  * created 14.08.2023 18:52
  *
  * @author Alexander A. Kropotin
  */
-public class ConcurrentBitSetWithSegmentsRWLocks extends AbstractBitSetConcurrentAdapter {
+public class ConcurrentBitSetWithSegmentsRWLocks extends AbstractBitSetConcurrentWrapper {
 
     /**
      * The number of bits required to address a specific position within a "word."

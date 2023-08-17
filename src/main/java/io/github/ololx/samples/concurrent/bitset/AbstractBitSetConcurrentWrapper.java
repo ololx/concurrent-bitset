@@ -16,7 +16,7 @@ import java.util.BitSet;
  *
  * @author Alexander A. Kropotin
  */
-public abstract class AbstractBitSetConcurrentAdapter implements ConcurrentBitSet {
+public abstract class AbstractBitSetConcurrentWrapper implements ConcurrentBitSet {
 
     /**
      * The underlying bit set to be manipulated concurrently.
@@ -28,7 +28,7 @@ public abstract class AbstractBitSetConcurrentAdapter implements ConcurrentBitSe
      *
      * @param size The size of the bit set.
      */
-    public AbstractBitSetConcurrentAdapter(int size) {
+    public AbstractBitSetConcurrentWrapper(int size) {
         this.bitSet = new BitSet(size);
     }
 }

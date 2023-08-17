@@ -74,7 +74,7 @@ public class ConcurrentBitSetBenchmark {
     @Setup
     public void setup() {
         switch (typeOfBitSetRealization) {
-            case FULL_SYNCHRONIZATION -> concurrentBitSet = new ConcurrentBitSetWithFULLSynchronization(sizeOfBitSet);
+            case FULL_SYNCHRONIZATION -> concurrentBitSet = new ConcurrentBitSetWithFullSynchronization(sizeOfBitSet);
             case ONE_READ_WRITE_LOCK -> concurrentBitSet = new ConcurrentBitSetWithGeneralRWLock(sizeOfBitSet);
             case MANY_READ_WRITE_LOCKS -> concurrentBitSet = new ConcurrentBitSetWithSegmentsRWLocks(sizeOfBitSet);
             case NON_BLOCKING -> concurrentBitSet = new NonBlockingConcurrentBitset(sizeOfBitSet);

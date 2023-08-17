@@ -35,7 +35,7 @@ public class ConcurrentBitsetTest {
                 .collect(Collectors.toList());
 
         data.add(new Object[]{
-                new ConcurrentBitSetWithFULLSynchronization(bitSetSize),
+                new ConcurrentBitSetWithFullSynchronization(bitSetSize),
                 unitIndexes,
                 bitSetSize
         });
