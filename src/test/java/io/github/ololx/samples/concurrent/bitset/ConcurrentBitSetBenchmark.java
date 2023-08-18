@@ -56,10 +56,10 @@ public class ConcurrentBitSetBenchmark {
     @Param({"10", "100", "1000"})
     private int sizeOfBitSet;
 
-    @Param({"10", "100"})
+    @Param({"1", "10"})
     private int countOfSetters;
 
-    @Param({"10", "100"})
+    @Param({"1", "10"})
     private int countOfGetters;
 
     public ConcurrentBitSetBenchmark() {}
@@ -96,7 +96,7 @@ public class ConcurrentBitSetBenchmark {
         for (int setBitOpNumber = 0; setBitOpNumber < countOfGetters; setBitOpNumber++) {
             bitsetInvocations.add(CompletableFuture.runAsync(() -> {
                 for (int bitNumber = 0; bitNumber < sizeOfBitSet; bitNumber++) {
-                    concurrentBitSet.set(bitNumber);
+                    blackhole.consume(concurrentBitSet.get(bitNumber));
                 }
 
             }, executor));
@@ -105,7 +105,7 @@ public class ConcurrentBitSetBenchmark {
         for (int getBitOpNumber = 0; getBitOpNumber < countOfSetters; getBitOpNumber++) {
             bitsetInvocations.add(CompletableFuture.runAsync(() -> {
                 for (int bitNumber = 0; bitNumber < sizeOfBitSet; bitNumber++) {
-                    blackhole.consume(concurrentBitSet.get(bitNumber));
+                    concurrentBitSet.set(bitNumber);
                 }
 
             }, executor));
