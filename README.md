@@ -48,7 +48,13 @@ public class ConcurrentBitSetWithFullSynchronization {
     }
 }
 ```
+
+Such an implementation of BitSet is already considered thread-safe and passes our thread safety test. It's important to note that now only one thread can be in
+any given method at a time, even if different parts of our BitSet are being accessed. In this scenario, under heavy multi-threaded usage, high performance
+should not be expected.
+
 ## Locked BitSet by one read-write lock
+
 
 ```java
 public class ConcurrentBitSetWithGeneralRWLock {
