@@ -1,8 +1,13 @@
 # concurrent-bitset
-This is a custom realisation of a thread-safety `BitSet`.
+
+Starting from Java version 1.0, the BitSet class has been available, representing an array of bits that can be set or cleared. It can be employed in various
+scenarios where manipulation of bit-level information and flag handling is required, owing to its efficiency and compactness when dealing with substantial
+volumes of bit-based data.
+It sounds impressive, but there's a caveat: the native implementation of BitSet in Java is not thread-safe. The authors themselves caution about this
+in comments within the class: "A BitSet is not safe for multithreaded use without external synchronization."
 
 
-## Synchronized BitSet
+## Concurrent BitSet using synchronization
 
 The first and most apparent approach is to synchronize each access to the internal data structures — the array of bits.
 Effectively, we can create a wrapper around the native `BitSet` instance, in which every invocation of methods from this instance would be synchronized.
@@ -49,12 +54,11 @@ public class ConcurrentBitSetWithFullSynchronization {
 }
 ```
 
-Such an implementation of BitSet is already considered thread-safe and passes our thread safety test. It's important to note that now only one thread can be in
-any given method at a time, even if different parts of our BitSet are being accessed. In this scenario, under heavy multi-threaded usage, high performance
+Such an implementation of `BitSet` is already considered thread-safe and passes our thread safety test. It's important to note that now only one thread can
+be in any given method at a time, even if different parts of our BitSet are being accessed. In this scenario, under heavy multi-threaded usage, high performance
 should not be expected.
 
-## Locked BitSet by one read-write lock
-
+## Concurrent BitSet using read-write lock
 
 ```java
 public class ConcurrentBitSetWithGeneralRWLock {
