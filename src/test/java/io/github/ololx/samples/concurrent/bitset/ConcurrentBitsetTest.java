@@ -50,7 +50,7 @@ public class ConcurrentBitsetTest {
                 bitSetSize
         });
         data.add(new Object[]{
-                new NonBlockingConcurrentBitset(bitSetSize),
+                new NonBlockingConcurrentBitSet(bitSetSize),
                 unitIndexes,
                 bitSetSize
         });

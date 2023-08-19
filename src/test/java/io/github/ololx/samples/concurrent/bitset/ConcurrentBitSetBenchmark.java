@@ -53,7 +53,7 @@ public class ConcurrentBitSetBenchmark {
 
     private ExecutorService executor;
 
-    @Param({"10", "100", "1000"})
+    @Param({"10", "100"})
     private int sizeOfBitSet;
 
     @Param({"1", "10"})
@@ -77,7 +77,7 @@ public class ConcurrentBitSetBenchmark {
             case FULL_SYNCHRONIZATION -> concurrentBitSet = new ConcurrentBitSetWithFullSynchronization(sizeOfBitSet);
             case ONE_READ_WRITE_LOCK -> concurrentBitSet = new ConcurrentBitSetWithGeneralRWLock(sizeOfBitSet);
             case MANY_READ_WRITE_LOCKS -> concurrentBitSet = new ConcurrentBitSetWithSegmentsRWLocks(sizeOfBitSet);
-            case NON_BLOCKING -> concurrentBitSet = new NonBlockingConcurrentBitset(sizeOfBitSet);
+            case NON_BLOCKING -> concurrentBitSet = new NonBlockingConcurrentBitSet(sizeOfBitSet);
         }
 
         executor = Executors.newWorkStealingPool(AVAILABLE_CPU);
