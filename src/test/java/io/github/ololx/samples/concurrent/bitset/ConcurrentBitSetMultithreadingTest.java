@@ -4,8 +4,6 @@ import edu.umd.cs.mtc.MultithreadedTest;
 import edu.umd.cs.mtc.TestFramework;
 import org.junit.Test;
 
-import java.util.BitSet;
-
 public class ConcurrentBitSetMultithreadingTest extends MultithreadedTest {
 
     private ConcurrentBitSetWithFullSynchronization concurrentBitSetWithFullSynchronization;
@@ -14,11 +12,11 @@ public class ConcurrentBitSetMultithreadingTest extends MultithreadedTest {
 
     private ConcurrentBitSetWithSegmentsRWLocks concurrentBitSetWithSegmentsRWLocks;
 
-    private NonBlockingConcurrentBitset nonBlockingConcurrentBitset;
+    private NonBlockingConcurrentBitSet nonBlockingConcurrentBitset;
 
     @Override
     public void initialize() {
-        this.nonBlockingConcurrentBitset = new NonBlockingConcurrentBitset(10);
+        this.nonBlockingConcurrentBitset = new NonBlockingConcurrentBitSet(10);
         this.concurrentBitSetWithFullSynchronization = new ConcurrentBitSetWithFullSynchronization(10);
         this.concurrentBitSetWithGeneralRWLock = new ConcurrentBitSetWithGeneralRWLock(10);
         this.concurrentBitSetWithSegmentsRWLocks = new ConcurrentBitSetWithSegmentsRWLocks(10);

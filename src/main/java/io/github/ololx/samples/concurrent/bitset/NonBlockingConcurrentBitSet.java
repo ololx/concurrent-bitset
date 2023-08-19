@@ -16,7 +16,7 @@ import java.util.function.Function;
  *
  * @author Alexander A. Kropotin
  */
-public class NonBlockingConcurrentBitset implements ConcurrentBitSet {
+public class NonBlockingConcurrentBitSet implements ConcurrentBitSet {
 
     /**
      * The size of a word in bits.
@@ -33,7 +33,7 @@ public class NonBlockingConcurrentBitset implements ConcurrentBitSet {
      *
      * @param size The number of bits in the bitset.
      */
-    public NonBlockingConcurrentBitset(int size) {
+    public NonBlockingConcurrentBitSet(int size) {
         this.data = new AtomicWordArray((size + WORD_SIZE - 1) / WORD_SIZE);
     }
 
