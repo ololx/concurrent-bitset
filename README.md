@@ -30,7 +30,7 @@ Below, I will provide code examples of various ways to implement a thread-safe B
 2. **benchmark**, which will showcase the performance of each implementation in terms of throughput.
 
 The **thread safety correctness test** is written using the [**MultithreadedTC**](https://www.cs.umd.edu/projects/PL/multithreadedtc/overview.html) framework, while 
-the **benchmark** is conducted using the [**Java Microbenchmark Harness (JMH) **](https://github.com/openjdk/jmh).
+the **benchmark** is conducted using the [**Java Microbenchmark Harness (JMH)**](https://github.com/openjdk/jmh).
 
 To begin, let's attempt the Thread Safety Correctness Test on the native Java implementation of BitSet and verify that it's indeed not thread-safe, 
 and the test can identify this.
