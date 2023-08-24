@@ -33,6 +33,8 @@ public class ConcurrentBitSetBenchmark {
 
     private static final String FULL_SYNCHRONIZATION = "javaNativeWithSynchronizationByThis";
 
+    private static final String SEGMENTS_SYNCHRONIZATION = "javaNativeWithSynchronizationBySegments";
+
     private static final String ONE_READ_WRITE_LOCK = "javaNativeWithOneReadWriteLock";
 
     private static final String MANY_READ_WRITE_LOCKS = "javaNativeWithManyReadWriteLocksBySegments";
@@ -44,6 +46,7 @@ public class ConcurrentBitSetBenchmark {
     @Param(
             {
                     FULL_SYNCHRONIZATION,
+                    SEGMENTS_SYNCHRONIZATION,
                     ONE_READ_WRITE_LOCK,
                     MANY_READ_WRITE_LOCKS,
                     NON_BLOCKING
@@ -75,6 +78,7 @@ public class ConcurrentBitSetBenchmark {
     public void setup() {
         switch (typeOfBitSetRealization) {
             case FULL_SYNCHRONIZATION -> concurrentBitSet = new ConcurrentBitSetWithFullSynchronization(sizeOfBitSet);
+            case SEGMENTS_SYNCHRONIZATION -> concurrentBitSet = new ConcurrentBitSetWithSegmentsSynchronization(sizeOfBitSet);
             case ONE_READ_WRITE_LOCK -> concurrentBitSet = new ConcurrentBitSetWithGeneralRWLock(sizeOfBitSet);
             case MANY_READ_WRITE_LOCKS -> concurrentBitSet = new ConcurrentBitSetWithSegmentsRWLocks(sizeOfBitSet);
             case NON_BLOCKING -> concurrentBitSet = new NonBlockingConcurrentBitSet(sizeOfBitSet);
