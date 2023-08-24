@@ -1,7 +1,6 @@
 package io.github.ololx.samples.concurrent.bitset;
 
 import java.util.BitSet;
-import java.util.concurrent.locks.ReadWriteLock;
 
 /**
  * Provides a concurrent implementation of a bit set using full synchronization.

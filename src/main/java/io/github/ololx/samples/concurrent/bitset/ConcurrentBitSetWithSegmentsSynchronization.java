@@ -8,19 +8,17 @@ import java.util.stream.IntStream;
  * A concurrent bit set implementation using separate segment locks.
  * This class extends {@link AbstractBitSetConcurrentWrapper}.
  *
- * @apiNote  This class is designed for scenarios where multiple threads may concurrently access
+ * @author Alexander A. Kropotin
+ * @apiNote This class is designed for scenarios where multiple threads may concurrently access
  * different segments of the bit set, leading to better concurrency compared to full synchronization.
- * @implNote  This implementation achieves concurrency control by utilizing separate
+ * @implNote This implementation achieves concurrency control by utilizing separate
  * read-write locks for each segment of the bit set.
- * @implSpec  All public methods in this class are thread-safe. The segment locks ensure
+ * @implSpec All public methods in this class are thread-safe. The segment locks ensure
  * that operations on different segments can be executed concurrently by different threads.
- *
  * @see AbstractBitSetConcurrentWrapper
- *
+ * <p>
  * project concurrent-bitset
  * created 24.08.2023 19:52
- *
- * @author Alexander A. Kropotin
  */
 public class ConcurrentBitSetWithSegmentsSynchronization extends AbstractBitSetConcurrentWrapper {
 
@@ -49,7 +47,7 @@ public class ConcurrentBitSetWithSegmentsSynchronization extends AbstractBitSetC
 
     /**
      * {@inheritDoc}
-     *
+     * <p>
      * Retrieves the value of the bit at the specified index.
      *
      * @param bitIndex The index of the bit to be retrieved.
@@ -62,7 +60,7 @@ public class ConcurrentBitSetWithSegmentsSynchronization extends AbstractBitSetC
 
     /**
      * {@inheritDoc}
-     *
+     * <p>
      * Sets the bit at the specified index.
      *
      * @param bitIndex The index of the bit to be set.
@@ -74,7 +72,7 @@ public class ConcurrentBitSetWithSegmentsSynchronization extends AbstractBitSetC
 
     /**
      * {@inheritDoc}
-     *
+     * <p>
      * Clears the bit at the specified index.
      *
      * @param bitIndex The index of the bit to be cleared.
@@ -86,7 +84,7 @@ public class ConcurrentBitSetWithSegmentsSynchronization extends AbstractBitSetC
 
     /**
      * {@inheritDoc}
-     *
+     * <p>
      * Flips the bit at the specified index.
      *
      * @param bitIndex The index of the bit to be flipped.
@@ -112,7 +110,7 @@ public class ConcurrentBitSetWithSegmentsSynchronization extends AbstractBitSetC
     /**
      * Acquires a write lock, invokes the provided consumer, and releases the write lock afterward.
      *
-     * @param bitIndex       The index of the bit to be modified.
+     * @param bitIndex             The index of the bit to be modified.
      * @param modificationConsumer The consumer performing the bit modification operation.
      */
     private void syncAndSet(int bitIndex, Consumer<Integer> modificationConsumer) {
