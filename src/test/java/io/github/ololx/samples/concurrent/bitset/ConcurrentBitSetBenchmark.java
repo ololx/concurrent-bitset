@@ -46,8 +46,8 @@ public class ConcurrentBitSetBenchmark {
     @Param(
             {
                     FULL_SYNCHRONIZATION,
-                    SEGMENTS_SYNCHRONIZATION,
                     ONE_READ_WRITE_LOCK,
+                    SEGMENTS_SYNCHRONIZATION,
                     MANY_READ_WRITE_LOCKS,
                     NON_BLOCKING
             }
@@ -56,13 +56,13 @@ public class ConcurrentBitSetBenchmark {
 
     private ExecutorService executor;
 
-    @Param({"10", "100"})
+    @Param({"64", "640"})
     private int sizeOfBitSet;
 
-    @Param({"1", "10"})
+    @Param({"1", "5"})
     private int countOfSetters;
 
-    @Param({"1", "10"})
+    @Param({"1", "5"})
     private int countOfGetters;
 
     public ConcurrentBitSetBenchmark() {}
@@ -78,8 +78,8 @@ public class ConcurrentBitSetBenchmark {
     public void setup() {
         switch (typeOfBitSetRealization) {
             case FULL_SYNCHRONIZATION -> concurrentBitSet = new ConcurrentBitSetWithFullSynchronization(sizeOfBitSet);
-            case SEGMENTS_SYNCHRONIZATION -> concurrentBitSet = new ConcurrentBitSetWithSegmentsSynchronization(sizeOfBitSet);
             case ONE_READ_WRITE_LOCK -> concurrentBitSet = new ConcurrentBitSetWithGeneralRWLock(sizeOfBitSet);
+            case SEGMENTS_SYNCHRONIZATION -> concurrentBitSet = new ConcurrentBitSetWithSegmentsSynchronization(sizeOfBitSet);
             case MANY_READ_WRITE_LOCKS -> concurrentBitSet = new ConcurrentBitSetWithSegmentsRWLocks(sizeOfBitSet);
             case NON_BLOCKING -> concurrentBitSet = new NonBlockingConcurrentBitSet(sizeOfBitSet);
         }

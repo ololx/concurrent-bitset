@@ -8,6 +8,8 @@ public class ConcurrentBitSetMultithreadingTest extends MultithreadedTest {
 
     private ConcurrentBitSetWithFullSynchronization concurrentBitSetWithFullSynchronization;
 
+    private ConcurrentBitSetWithSegmentsSynchronization concurrentBitSetWithSegmentsSynchronization;
+
     private ConcurrentBitSetWithGeneralRWLock concurrentBitSetWithGeneralRWLock;
 
     private ConcurrentBitSetWithSegmentsRWLocks concurrentBitSetWithSegmentsRWLocks;
@@ -18,6 +20,7 @@ public class ConcurrentBitSetMultithreadingTest extends MultithreadedTest {
     public void initialize() {
         this.nonBlockingConcurrentBitset = new NonBlockingConcurrentBitSet(10);
         this.concurrentBitSetWithFullSynchronization = new ConcurrentBitSetWithFullSynchronization(10);
+        this.concurrentBitSetWithSegmentsSynchronization = new ConcurrentBitSetWithSegmentsSynchronization(10);
         this.concurrentBitSetWithGeneralRWLock = new ConcurrentBitSetWithGeneralRWLock(10);
         this.concurrentBitSetWithSegmentsRWLocks = new ConcurrentBitSetWithSegmentsRWLocks(10);
     }
@@ -25,6 +28,7 @@ public class ConcurrentBitSetMultithreadingTest extends MultithreadedTest {
     public void thread1() throws InterruptedException {
         this.nonBlockingConcurrentBitset.set(1);
         this.concurrentBitSetWithFullSynchronization.set(1);
+        this.concurrentBitSetWithSegmentsSynchronization.set(1);
         this.concurrentBitSetWithGeneralRWLock.set(1);
         this.concurrentBitSetWithSegmentsRWLocks.set(1);
     }
@@ -32,6 +36,7 @@ public class ConcurrentBitSetMultithreadingTest extends MultithreadedTest {
     public void thread2() throws InterruptedException {
         this.nonBlockingConcurrentBitset.set(2);
         this.concurrentBitSetWithFullSynchronization.set(2);
+        this.concurrentBitSetWithSegmentsSynchronization.set(2);
         this.concurrentBitSetWithGeneralRWLock.set(2);
         this.concurrentBitSetWithSegmentsRWLocks.set(2);
     }
@@ -40,6 +45,7 @@ public class ConcurrentBitSetMultithreadingTest extends MultithreadedTest {
     public void finish() {
         assertTrue(nonBlockingConcurrentBitset.get(1) && nonBlockingConcurrentBitset.get(2));
         assertTrue(concurrentBitSetWithFullSynchronization.get(1) && concurrentBitSetWithFullSynchronization.get(2));
+        assertTrue(concurrentBitSetWithSegmentsSynchronization.get(1) && concurrentBitSetWithSegmentsSynchronization.get(2));
         assertTrue(concurrentBitSetWithGeneralRWLock.get(1) && concurrentBitSetWithGeneralRWLock.get(2));
         assertTrue(concurrentBitSetWithSegmentsRWLocks.get(1) && concurrentBitSetWithSegmentsRWLocks.get(2));
     }
