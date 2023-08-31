@@ -334,31 +334,23 @@ This test is executed with different combinations of parameters:
 - sizeOfBitSet - the number of bits in the BitSet, also determines the number of bits read/written by each thread.
 
 ```shell
-Benchmark                                    (countOfGetters)  (countOfSetters)  (sizeOfBitSet)            (typeOfBitSetRealization)  Mode  Cnt     Score     Error  Units
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                 1              10  javaNativeWithSynchronizationByThis  avgt   15     6,428 ±   0,321  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                 1              10       javaNativeWithOneReadWriteLock  avgt   15     6,531 ±   0,294  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                 1             100  javaNativeWithSynchronizationByThis  avgt   15     8,271 ±   0,176  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                 1             100       javaNativeWithOneReadWriteLock  avgt   15     9,347 ±   0,268  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                 1            1000  javaNativeWithSynchronizationByThis  avgt   15    41,002 ±   3,840  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                 1            1000       javaNativeWithOneReadWriteLock  avgt   15    49,092 ±   1,320  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                10              10  javaNativeWithSynchronizationByThis  avgt   15     8,107 ±   0,214  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                10              10       javaNativeWithOneReadWriteLock  avgt   15     8,996 ±   0,310  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                10             100  javaNativeWithSynchronizationByThis  avgt   15    42,455 ±   1,916  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                10             100       javaNativeWithOneReadWriteLock  avgt   15    29,082 ±   0,833  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                10            1000  javaNativeWithSynchronizationByThis  avgt   15  1177,444 ±  33,276  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                10            1000       javaNativeWithOneReadWriteLock  avgt   15   254,745 ±   4,431  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                 1              10  javaNativeWithSynchronizationByThis  avgt   15     8,084 ±   0,359  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                 1              10       javaNativeWithOneReadWriteLock  avgt   15     9,394 ±   0,289  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                 1             100  javaNativeWithSynchronizationByThis  avgt   15    37,827 ±   0,907  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                 1             100       javaNativeWithOneReadWriteLock  avgt   15    49,622 ±   4,295  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                 1            1000  javaNativeWithSynchronizationByThis  avgt   15  1055,402 ±  45,362  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                 1            1000       javaNativeWithOneReadWriteLock  avgt   15  2624,097 ± 346,594  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                10              10  javaNativeWithSynchronizationByThis  avgt   15    10,623 ±   0,330  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                10              10       javaNativeWithOneReadWriteLock  avgt   15    12,797 ±   0,496  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                10             100  javaNativeWithSynchronizationByThis  avgt   15   103,904 ±   7,629  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                10             100       javaNativeWithOneReadWriteLock  avgt   15    73,886 ±   3,412  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                10            1000  javaNativeWithSynchronizationByThis  avgt   15  2299,186 ±  64,660  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                10            1000       javaNativeWithOneReadWriteLock  avgt   15  1936,798 ± 191,437  us/op
+Benchmark                                    (countOfGetters)  (countOfSetters)  (sizeOfBitSet)            (typeOfBitSetRealization)  Mode  Cnt    Score    Error  Units
+ConcurrentBitSetBenchmark.get_set_benchmark                 1                 1              64  javaNativeWithSynchronizationByThis  avgt   15    7,599 ±  0,249  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 1                 1              64       javaNativeWithOneReadWriteLock  avgt   15   16,029 ± 12,473  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 1                 1             640  javaNativeWithSynchronizationByThis  avgt   15   26,445 ±  1,427  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 1                 1             640       javaNativeWithOneReadWriteLock  avgt   15   33,103 ±  1,770  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 1                 5              64  javaNativeWithSynchronizationByThis  avgt   15   13,650 ±  1,473  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 1                 5              64       javaNativeWithOneReadWriteLock  avgt   15   15,289 ±  1,517  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 1                 5             640  javaNativeWithSynchronizationByThis  avgt   15  171,227 ± 49,553  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 1                 5             640       javaNativeWithOneReadWriteLock  avgt   15  101,555 ±  6,714  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 5                 1              64  javaNativeWithSynchronizationByThis  avgt   15   12,510 ±  0,704  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 5                 1              64       javaNativeWithOneReadWriteLock  avgt   15   16,947 ±  3,171  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 5                 1             640  javaNativeWithSynchronizationByThis  avgt   15  157,836 ± 34,753  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 5                 1             640       javaNativeWithOneReadWriteLock  avgt   15  155,556 ± 13,568  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 5                 5              64  javaNativeWithSynchronizationByThis  avgt   15   21,713 ±  1,146  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 5                 5              64       javaNativeWithOneReadWriteLock  avgt   15   23,875 ±  1,942  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 5                 5             640  javaNativeWithSynchronizationByThis  avgt   15  550,413 ± 31,637  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 5                 5             640       javaNativeWithOneReadWriteLock  avgt   15  220,764 ±  4,870  us/op
 ```
 
 As a result, we can observe that the implementation with a read-write lock performs better compared to the synchronized approach when there is high contention 
@@ -449,43 +441,31 @@ evidenced by the **benchmark** results. In the new **benchmark**, the parameter 
 - javaNativeWithManyReadWriteLocksBySegments - concurrent BitSet using fine-grained locking.
 
 ```shell
-Benchmark                                    (countOfGetters)  (countOfSetters)  (sizeOfBitSet)                   (typeOfBitSetRealization)  Mode  Cnt     Score     Error  Units
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                 1              10         javaNativeWithSynchronizationByThis  avgt   15     7,699 ±   0,322  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                 1              10              javaNativeWithOneReadWriteLock  avgt   15     7,829 ±   0,298  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                 1              10  javaNativeWithManyReadWriteLocksBySegments  avgt   15     7,783 ±   0,238  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                 1             100         javaNativeWithSynchronizationByThis  avgt   15     9,793 ±   0,284  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                 1             100              javaNativeWithOneReadWriteLock  avgt   15    11,111 ±   0,390  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                 1             100  javaNativeWithManyReadWriteLocksBySegments  avgt   15    11,073 ±   0,520  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                 1            1000         javaNativeWithSynchronizationByThis  avgt   15    74,861 ±   4,352  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                 1            1000              javaNativeWithOneReadWriteLock  avgt   15    82,543 ±  10,358  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                 1            1000  javaNativeWithManyReadWriteLocksBySegments  avgt   15    36,263 ±   1,071  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                10              10         javaNativeWithSynchronizationByThis  avgt   15     9,499 ±   0,264  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                10              10              javaNativeWithOneReadWriteLock  avgt   15    10,676 ±   0,315  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                10              10  javaNativeWithManyReadWriteLocksBySegments  avgt   15    10,773 ±   0,338  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                10             100         javaNativeWithSynchronizationByThis  avgt   15    60,460 ±   1,840  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                10             100              javaNativeWithOneReadWriteLock  avgt   15    36,372 ±   1,293  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                10             100  javaNativeWithManyReadWriteLocksBySegments  avgt   15    34,836 ±   1,259  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                10            1000         javaNativeWithSynchronizationByThis  avgt   15  1476,659 ±  29,844  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                10            1000              javaNativeWithOneReadWriteLock  avgt   15   299,524 ±   9,073  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                10            1000  javaNativeWithManyReadWriteLocksBySegments  avgt   15   440,140 ±  23,995  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                 1              10         javaNativeWithSynchronizationByThis  avgt   15     9,433 ±   0,330  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                 1              10              javaNativeWithOneReadWriteLock  avgt   15    11,849 ±   1,004  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                 1              10  javaNativeWithManyReadWriteLocksBySegments  avgt   15    11,416 ±   0,541  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                 1             100         javaNativeWithSynchronizationByThis  avgt   15    58,306 ±   5,606  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                 1             100              javaNativeWithOneReadWriteLock  avgt   15    69,939 ±   5,430  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                 1             100  javaNativeWithManyReadWriteLocksBySegments  avgt   15    48,966 ±   2,279  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                 1            1000         javaNativeWithSynchronizationByThis  avgt   15  1381,423 ±  22,395  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                 1            1000              javaNativeWithOneReadWriteLock  avgt   15  3909,740 ± 281,098  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                 1            1000  javaNativeWithManyReadWriteLocksBySegments  avgt   15   168,350 ±  23,639  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                10              10         javaNativeWithSynchronizationByThis  avgt   15    12,352 ±   0,361  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                10              10              javaNativeWithOneReadWriteLock  avgt   15    15,205 ±   0,377  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                10              10  javaNativeWithManyReadWriteLocksBySegments  avgt   15    15,634 ±   0,640  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                10             100         javaNativeWithSynchronizationByThis  avgt   15   156,676 ±   5,479  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                10             100              javaNativeWithOneReadWriteLock  avgt   15   111,449 ±   2,473  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                10             100  javaNativeWithManyReadWriteLocksBySegments  avgt   15    86,238 ±   4,826  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                10            1000         javaNativeWithSynchronizationByThis  avgt   15  2726,229 ±  68,382  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                10            1000              javaNativeWithOneReadWriteLock  avgt   15  3057,434 ± 404,412  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                10            1000  javaNativeWithManyReadWriteLocksBySegments  avgt   15   595,612 ±  20,125  us/op
+Benchmark                                    (countOfGetters)  (countOfSetters)  (sizeOfBitSet)                   (typeOfBitSetRealization)  Mode  Cnt    Score    Error  Units
+ConcurrentBitSetBenchmark.get_set_benchmark                 1                 1              64         javaNativeWithSynchronizationByThis  avgt   15    8,049 ±  1,229  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 1                 1              64              javaNativeWithOneReadWriteLock  avgt   15    8,357 ±  0,529  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 1                 1              64  javaNativeWithManyReadWriteLocksBySegments  avgt   15    8,260 ±  0,337  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 1                 1             640         javaNativeWithSynchronizationByThis  avgt   15   25,674 ±  1,121  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 1                 1             640              javaNativeWithOneReadWriteLock  avgt   15   31,116 ±  0,803  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 1                 1             640  javaNativeWithManyReadWriteLocksBySegments  avgt   15   25,550 ±  0,490  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 1                 5              64         javaNativeWithSynchronizationByThis  avgt   15   12,312 ±  0,684  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 1                 5              64              javaNativeWithOneReadWriteLock  avgt   15   13,336 ±  0,415  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 1                 5              64  javaNativeWithManyReadWriteLocksBySegments  avgt   15   13,865 ±  0,943  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 1                 5             640         javaNativeWithSynchronizationByThis  avgt   15  149,213 ± 37,374  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 1                 5             640              javaNativeWithOneReadWriteLock  avgt   15   96,545 ±  1,655  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 1                 5             640  javaNativeWithManyReadWriteLocksBySegments  avgt   15   82,410 ±  5,834  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 5                 1              64         javaNativeWithSynchronizationByThis  avgt   15   12,124 ±  0,486  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 5                 1              64              javaNativeWithOneReadWriteLock  avgt   15   15,382 ±  0,639  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 5                 1              64  javaNativeWithManyReadWriteLocksBySegments  avgt   15   15,305 ±  0,345  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 5                 1             640         javaNativeWithSynchronizationByThis  avgt   15  134,842 ± 22,531  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 5                 1             640              javaNativeWithOneReadWriteLock  avgt   15  154,292 ±  5,257  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 5                 1             640  javaNativeWithManyReadWriteLocksBySegments  avgt   15   58,527 ±  1,225  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 5                 5              64         javaNativeWithSynchronizationByThis  avgt   15   20,826 ±  1,509  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 5                 5              64              javaNativeWithOneReadWriteLock  avgt   15   22,992 ±  1,885  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 5                 5              64  javaNativeWithManyReadWriteLocksBySegments  avgt   15   22,446 ±  0,687  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 5                 5             640         javaNativeWithSynchronizationByThis  avgt   15  507,174 ± 17,105  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 5                 5             640              javaNativeWithOneReadWriteLock  avgt   15  236,177 ± 42,689  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 5                 5             640  javaNativeWithManyReadWriteLocksBySegments  avgt   15  148,687 ±  4,516  us/op
 ```
 
 As a result, you can observe that fine-grained locking has proven to be more performant than the two previous approaches, and the performance advantage becomes 
@@ -617,57 +597,41 @@ This implementation passes the **thread safety correctness test**. In the new **
 - NonBlockingConcurrentBitset - concurrent BitSet using lock free.
 
 ```shell
-Benchmark                                    (countOfGetters)  (countOfSetters)  (sizeOfBitSet)                   (typeOfBitSetRealization)  Mode  Cnt     Score     Error  Units
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                 1              10         javaNativeWithSynchronizationByThis  avgt   15     7,656 ±   0,336  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                 1              10              javaNativeWithOneReadWriteLock  avgt   15     7,832 ±   0,240  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                 1              10  javaNativeWithManyReadWriteLocksBySegments  avgt   15     7,752 ±   0,208  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                 1              10                 NonBlockingConcurrentBitset  avgt   15     7,454 ±   0,234  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                 1             100         javaNativeWithSynchronizationByThis  avgt   15     9,724 ±   0,297  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                 1             100              javaNativeWithOneReadWriteLock  avgt   15    10,947 ±   0,271  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                 1             100  javaNativeWithManyReadWriteLocksBySegments  avgt   15    10,899 ±   0,202  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                 1             100                 NonBlockingConcurrentBitset  avgt   15     8,623 ±   0,281  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                 1            1000         javaNativeWithSynchronizationByThis  avgt   15    89,406 ±  12,940  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                 1            1000              javaNativeWithOneReadWriteLock  avgt   15    91,392 ±  13,781  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                 1            1000  javaNativeWithManyReadWriteLocksBySegments  avgt   15    38,202 ±   0,751  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                 1            1000                 NonBlockingConcurrentBitset  avgt   15    17,472 ±   0,373  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                10              10         javaNativeWithSynchronizationByThis  avgt   15     9,464 ±   0,323  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                10              10              javaNativeWithOneReadWriteLock  avgt   15    10,703 ±   0,381  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                10              10  javaNativeWithManyReadWriteLocksBySegments  avgt   15    11,571 ±   1,527  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                10              10                 NonBlockingConcurrentBitset  avgt   15     9,226 ±   0,246  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                10             100         javaNativeWithSynchronizationByThis  avgt   15    61,556 ±   3,826  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                10             100              javaNativeWithOneReadWriteLock  avgt   15    35,962 ±   0,850  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                10             100  javaNativeWithManyReadWriteLocksBySegments  avgt   15    35,348 ±   0,899  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                10             100                 NonBlockingConcurrentBitset  avgt   15    22,491 ±   0,540  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                10            1000         javaNativeWithSynchronizationByThis  avgt   15  1486,774 ±  27,128  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                10            1000              javaNativeWithOneReadWriteLock  avgt   15   299,919 ±   7,424  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                10            1000  javaNativeWithManyReadWriteLocksBySegments  avgt   15   401,058 ±  49,839  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                 1                10            1000                 NonBlockingConcurrentBitset  avgt   15   369,163 ±  63,357  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                 1              10         javaNativeWithSynchronizationByThis  avgt   15     9,565 ±   0,362  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                 1              10              javaNativeWithOneReadWriteLock  avgt   15    11,375 ±   0,514  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                 1              10  javaNativeWithManyReadWriteLocksBySegments  avgt   15    11,423 ±   0,444  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                 1              10                 NonBlockingConcurrentBitset  avgt   15     8,946 ±   0,345  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                 1             100         javaNativeWithSynchronizationByThis  avgt   15    58,032 ±   6,095  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                 1             100              javaNativeWithOneReadWriteLock  avgt   15    68,904 ±   9,292  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                 1             100  javaNativeWithManyReadWriteLocksBySegments  avgt   15    48,261 ±   1,748  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                 1             100                 NonBlockingConcurrentBitset  avgt   15    11,529 ±   0,484  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                 1            1000         javaNativeWithSynchronizationByThis  avgt   15  1387,168 ±  49,555  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                 1            1000              javaNativeWithOneReadWriteLock  avgt   15  4120,876 ± 220,844  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                 1            1000  javaNativeWithManyReadWriteLocksBySegments  avgt   15   164,937 ±  18,257  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                 1            1000                 NonBlockingConcurrentBitset  avgt   15    31,130 ±   1,029  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                10              10         javaNativeWithSynchronizationByThis  avgt   15    12,579 ±   0,472  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                10              10              javaNativeWithOneReadWriteLock  avgt   15    15,902 ±   1,814  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                10              10  javaNativeWithManyReadWriteLocksBySegments  avgt   15    15,073 ±   0,340  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                10              10                 NonBlockingConcurrentBitset  avgt   15    10,635 ±   0,307  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                10             100         javaNativeWithSynchronizationByThis  avgt   15   161,320 ±   9,932  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                10             100              javaNativeWithOneReadWriteLock  avgt   15   112,624 ±   8,444  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                10             100  javaNativeWithManyReadWriteLocksBySegments  avgt   15    87,816 ±   6,076  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                10             100                 NonBlockingConcurrentBitset  avgt   15    29,311 ±   0,646  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                10            1000         javaNativeWithSynchronizationByThis  avgt   15  2679,864 ±  32,310  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                10            1000              javaNativeWithOneReadWriteLock  avgt   15  3003,053 ± 398,642  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                10            1000  javaNativeWithManyReadWriteLocksBySegments  avgt   15   523,785 ±  37,843  us/op
-ConcurrentBitSetBenchmark.get_set_benchmark                10                10            1000                 NonBlockingConcurrentBitset  avgt   15   471,832 ±  68,409  us/op
+Benchmark                                    (countOfGetters)  (countOfSetters)  (sizeOfBitSet)                   (typeOfBitSetRealization)  Mode  Cnt    Score    Error  Units
+ConcurrentBitSetBenchmark.get_set_benchmark                 1                 1              64         javaNativeWithSynchronizationByThis  avgt   15    7,560 ±  0,346  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 1                 1              64              javaNativeWithOneReadWriteLock  avgt   15    8,263 ±  0,256  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 1                 1              64  javaNativeWithManyReadWriteLocksBySegments  avgt   15    8,368 ±  0,479  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 1                 1              64                 NonBlockingConcurrentBitset  avgt   15    6,820 ±  0,316  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 1                 1             640         javaNativeWithSynchronizationByThis  avgt   15   26,041 ±  1,395  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 1                 1             640              javaNativeWithOneReadWriteLock  avgt   15   32,026 ±  0,840  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 1                 1             640  javaNativeWithManyReadWriteLocksBySegments  avgt   15   25,453 ±  0,910  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 1                 1             640                 NonBlockingConcurrentBitset  avgt   15   12,267 ±  0,258  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 1                 5              64         javaNativeWithSynchronizationByThis  avgt   15   11,902 ±  0,655  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 1                 5              64              javaNativeWithOneReadWriteLock  avgt   15   13,446 ±  0,759  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 1                 5              64  javaNativeWithManyReadWriteLocksBySegments  avgt   15   13,747 ±  0,906  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 1                 5              64                 NonBlockingConcurrentBitset  avgt   15    9,903 ±  0,560  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 1                 5             640         javaNativeWithSynchronizationByThis  avgt   15  153,956 ± 34,896  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 1                 5             640              javaNativeWithOneReadWriteLock  avgt   15   95,176 ±  3,605  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 1                 5             640  javaNativeWithManyReadWriteLocksBySegments  avgt   15   83,124 ±  2,602  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 1                 5             640                 NonBlockingConcurrentBitset  avgt   15   44,346 ±  2,026  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 5                 1              64         javaNativeWithSynchronizationByThis  avgt   15   12,377 ±  0,795  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 5                 1              64              javaNativeWithOneReadWriteLock  avgt   15   15,112 ±  0,397  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 5                 1              64  javaNativeWithManyReadWriteLocksBySegments  avgt   15   16,468 ±  1,364  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 5                 1              64                 NonBlockingConcurrentBitset  avgt   15    7,733 ±  0,290  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 5                 1             640         javaNativeWithSynchronizationByThis  avgt   15  168,127 ± 34,236  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 5                 1             640              javaNativeWithOneReadWriteLock  avgt   15  151,939 ±  4,203  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 5                 1             640  javaNativeWithManyReadWriteLocksBySegments  avgt   15   59,806 ±  3,437  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 5                 1             640                 NonBlockingConcurrentBitset  avgt   15   16,633 ±  0,574  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 5                 5              64         javaNativeWithSynchronizationByThis  avgt   15   19,994 ±  0,483  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 5                 5              64              javaNativeWithOneReadWriteLock  avgt   15   22,420 ±  0,471  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 5                 5              64  javaNativeWithManyReadWriteLocksBySegments  avgt   15   22,747 ±  1,589  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 5                 5              64                 NonBlockingConcurrentBitset  avgt   15   11,279 ±  0,949  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 5                 5             640         javaNativeWithSynchronizationByThis  avgt   15  507,401 ± 18,371  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 5                 5             640              javaNativeWithOneReadWriteLock  avgt   15  218,627 ±  4,848  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 5                 5             640  javaNativeWithManyReadWriteLocksBySegments  avgt   15  137,042 ± 10,853  us/op
+ConcurrentBitSetBenchmark.get_set_benchmark                 5                 5             640                 NonBlockingConcurrentBitset  avgt   15   48,743 ±  2,908  us/op
 ```
 
 As a result, it's evident that the current implementation has outperformed all the previous ones in terms of performance, all while maintaining the absence 
-of compromises present in the 2nd and 3rd implementations. It's also worth noting that with low or no contention (1 setter, 1 getter, and 10 bits), 
+of compromises present in the 2nd and 3rd implementations. It's also worth noting that with low or no contention (1 setter, 1 getter, and 64 bits), 
 all implementations exhibit similar performance.
