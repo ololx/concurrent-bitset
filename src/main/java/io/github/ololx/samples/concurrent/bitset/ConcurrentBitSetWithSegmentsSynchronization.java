@@ -2,7 +2,6 @@ package io.github.ololx.samples.concurrent.bitset;
 
 import java.util.function.Consumer;
 import java.util.function.Supplier;
-import java.util.stream.IntStream;
 
 /**
  * A concurrent bit set implementation using separate segment locks.
@@ -41,8 +40,10 @@ public class ConcurrentBitSetWithSegmentsSynchronization extends AbstractBitSetC
     public ConcurrentBitSetWithSegmentsSynchronization(int size) {
         super(size);
         this.monitors = new Object[wordIndex(size - 1) + 1];
-        IntStream.range(0, this.monitors.length)
-                .forEach(index -> this.monitors[index] = new Object());
+
+        for (int index = 0; index < this.monitors.length; index++) {
+            this.monitors[index] = new Object();
+        }
     }
 
     /**

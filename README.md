@@ -380,8 +380,10 @@ public class ConcurrentBitSetWithSegmentsRWLocks {
     public ConcurrentBitSetWithSegmentsRWLocks(int size) {
         this.bitSet = new BitSet(size);
         this.readWriteLocks = new ReadWriteLock[wordIndex(size - 1) + 1];
-        IntStream.range(0, this.readWriteLocks.length)
-                .forEach(index -> this.readWriteLocks[index] = new ReentrantReadWriteLock());
+
+        for (int index = 0; index < this.readWriteLocks.length; index++) {
+            this.readWriteLocks[index] = new ReentrantReadWriteLock();
+        }
     }
 
     @Override
@@ -544,7 +546,7 @@ public class NonBlockingConcurrentBitSet {
         int wordIndex = bitIndex / WORD_SIZE;
         int bitOffset = bitIndex % WORD_SIZE;
         int bitMask = 1 << bitOffset;
-        this.data.setWordVolatile(wordIndex, (word) -> (byte) (word | bitMask));
+        this.data.setWordVolatile(wordIndex, word -> (byte) (word | bitMask));
     }
 
     @Override
@@ -552,7 +554,7 @@ public class NonBlockingConcurrentBitSet {
         int wordIndex = bitIndex / WORD_SIZE;
         int bitOffset = bitIndex % WORD_SIZE;
         int bitMask = 1 << bitOffset;
-        this.data.setWordVolatile(wordIndex, (word) -> (byte) (word & ~bitMask));
+        this.data.setWordVolatile(wordIndex, word -> (byte) (word & ~bitMask));
     }
 
     @Override
@@ -560,7 +562,7 @@ public class NonBlockingConcurrentBitSet {
         int wordIndex = bitIndex / WORD_SIZE;
         int bitOffset = bitIndex % WORD_SIZE;
         int bitMask = 1 << bitOffset;
-        this.data.setWordVolatile(wordIndex, (word) -> (byte) (word ^ bitMask));
+        this.data.setWordVolatile(wordIndex, word -> (byte) (word ^ bitMask));
     }
 
     private static class AtomicWordArray {

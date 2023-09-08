@@ -4,7 +4,6 @@ import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
-import java.util.stream.IntStream;
 
 /**
  * A concurrent bit set implementation using separate segment locks.
@@ -44,8 +43,10 @@ public class ConcurrentBitSetWithSegmentsRWLocks extends AbstractBitSetConcurren
     public ConcurrentBitSetWithSegmentsRWLocks(int size) {
         super(size);
         this.readWriteLocks = new ReadWriteLock[wordIndex(size - 1) + 1];
-        IntStream.range(0, this.readWriteLocks.length)
-                .forEach(index -> this.readWriteLocks[index] = new ReentrantReadWriteLock());
+
+        for (int index = 0; index < this.readWriteLocks.length; index++) {
+            this.readWriteLocks[index] = new ReentrantReadWriteLock();
+        }
     }
 
     /**

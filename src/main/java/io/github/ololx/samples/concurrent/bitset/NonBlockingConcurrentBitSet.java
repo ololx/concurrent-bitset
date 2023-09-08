@@ -62,7 +62,7 @@ public class NonBlockingConcurrentBitSet implements ConcurrentBitSet {
         int wordIndex = bitIndex / WORD_SIZE;
         int bitOffset = bitIndex % WORD_SIZE;
         int bitMask = 1 << bitOffset;
-        this.data.setWordVolatile(wordIndex, (word) -> (byte) (word | bitMask));
+        this.data.setWordVolatile(wordIndex, word -> (byte) (word | bitMask));
     }
 
     /**
@@ -75,7 +75,7 @@ public class NonBlockingConcurrentBitSet implements ConcurrentBitSet {
         int wordIndex = bitIndex / WORD_SIZE;
         int bitOffset = bitIndex % WORD_SIZE;
         int bitMask = 1 << bitOffset;
-        this.data.setWordVolatile(wordIndex, (word) -> (byte) (word & ~bitMask));
+        this.data.setWordVolatile(wordIndex, word -> (byte) (word & ~bitMask));
     }
 
     /**
@@ -88,7 +88,7 @@ public class NonBlockingConcurrentBitSet implements ConcurrentBitSet {
         int wordIndex = bitIndex / WORD_SIZE;
         int bitOffset = bitIndex % WORD_SIZE;
         int bitMask = 1 << bitOffset;
-        this.data.setWordVolatile(wordIndex, (word) -> (byte) (word ^ bitMask));
+        this.data.setWordVolatile(wordIndex, word -> (byte) (word ^ bitMask));
     }
 
     /**
